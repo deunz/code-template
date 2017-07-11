@@ -1,0 +1,30 @@
+---
+version: 1
+disable_existing_loggers: False
+formatters:
+    simple:
+        format: "%(asctime)s [%(levelname)s] %(name)s(%(funcName)s/l.%(lineno)d) %(message)s"
+
+handlers:
+    console:
+        class: logging.StreamHandler
+        level: DEBUG
+        formatter: simple
+        stream: ext://sys.stdout
+
+    file:
+        class: logging.FileHandler
+        level: DEBUG
+        formatter: simple
+        filename: /tmp/debug.log
+
+loggers:
+    __main__:
+        level: INFO
+        handlers: [console, file]
+        propagate: no
+
+    Test:
+        level: DEBUG
+        handlers: [console, file]
+        propagate: no
